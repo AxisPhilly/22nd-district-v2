@@ -62,9 +62,26 @@
       cartodb.log.log(error);
     });
 
-    $('.toggle').click(function(event){
-      
+    app.layerName = 'murders';
+
+    $('#shootings').click(function(event){
+      if(app.layerName !== 'shootings') {
+        app.layerName = 'shootings';
+        console.log('switch');
+      } else {
+        console.log('same')
+      }
     });
+
+    $('#murders').click(function(event){
+      if(app.layerName !== 'murders') {
+        app.layerName = 'murders';
+        console.log('switch');
+      } else {
+        console.log('same')
+      }
+    });
+
 
     // create layer selector
     function layerSelector(layer) {
