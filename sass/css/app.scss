@@ -296,20 +296,29 @@ html, body, #map {
 
 // app
 #year_selector {
+  margin-top: 3px;
   float: right;
-  top: 2px;
-  height: 100%;
+  top: 6px;
+  height: 90%;
   margin-right: 10px;
   padding-left: .7em;
 }
 
-/*#year_selector {
-  position: absolute;
-  top: 20px;
-  left: 200px;
-  padding: 0;
-  height: 13%;
-}*/
+// toggle
+.toggle {
+  top: 10px;
+  padding: 0px;
+  margin: 0px;
+  margin-right: 10px;
+  float: right;
+  width: 200px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.candy.yellow .slide-button { 
+  background-color: #FDD441;
+}
 
 .selector {
   ul {
@@ -318,21 +327,22 @@ html, body, #map {
   }
 
   li {
-    background-color: #C0C0C0;
+    background-color: #333;
     border-bottom: 1px solid #999999;
     padding: 2px 15px;
     font-family: "Helvetica",Arial;
     font-size: 13px;
-    color: #444;
+    color: #fff;
     cursor: auto;
+    border-radius: 3px;
 
     &:hover {
-      background-color: #F0F0F0;
+      background-color: #ccc;
       cursor: pointer;
     }
 
     &.selected {
-      background-color: #EEE;
+      background-color: #FDD441;
     }
   }
 }
