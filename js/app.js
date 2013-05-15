@@ -34,10 +34,6 @@ app.initMap = function(callback) {
 
     L.control.zoom({position: 'topright'}).addTo(app.map);
 
-    app.map.attributionControl.addAttribution(
-      'Basemap: Data © OpenStreetMap contributors. Design © MapBox'
-    );
-
     if(mapSettings.urlPosition === true) {
       app.setEvents();
     }
