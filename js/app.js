@@ -24,26 +24,26 @@ app.mergeMapSettings = function() {
 app.initMap = function(callback) {
   var mapSettings = app.mergeMapSettings();
 
-  wax.tilejson(app.opts.tileURL,
-  function(tilejson) {
+  //wax.tilejson(app.opts.tileURL,
+  //function(tilejson) {
     L.Icon.Default.imagePath = 'img/leaflet';
 
     app.map = new L.Map(app.opts.mapContainer, mapSettings)
-      .addLayer(new wax.leaf.connector(tilejson))
+      //.addLayer(new wax.leaf.connector(tilejson))
       .setView(mapSettings.center, mapSettings.zoom);
 
     L.control.zoom({position: 'topright'}).addTo(app.map);
 
     app.map.attributionControl.addAttribution(
-        'Map Data: (c) <a href="http://www.openstreetmap.org">OpenStreetMap</a>'
-      );
+      'Basemap: Data © OpenStreetMap contributors. Design © MapBox'
+    );
 
     if(mapSettings.urlPosition === true) {
       app.setEvents();
     }
 
     if(callback && typeof callback === 'function') { callback(); }
-  });
+  //});
 };
 
 // Listen for changes as user pans and zoom on the map
