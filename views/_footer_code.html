@@ -31,10 +31,10 @@
   // Default settings. Zoom and center overridden by URL params, if they exist
   app.opts = {
     mapContainer: 'map',
-    tileURL: 'http://api.tiles.mapbox.com/v3/axisphilly.map-5rf31e6p.jsonp',
+    tileURL: 'http://api.tiles.mapbox.com/v3/axisphilly.map-rwfs60dd.jsonp',
     mapOptions: {
-      center: [39.99, -75.150],
-      zoom: 12,
+      center: [39.987, -75.179],
+      zoom: 14,
       minZoom: 11,
       maxZoom: 18,
       maxBounds: [
@@ -48,6 +48,15 @@
 
   // Kick off map
   app.initMap(function() {
+
+    var layerURL = 'http://axisphilly.cartodb.com/api/v1/viz/combined_shootings_murders/viz.json';
+    cartodb.createLayer(app.map, layerURL, {
+      query: 'select * from combined_shootings_murders'
+    }).on('done', function(layer) {
+      app.map.addLayer(layer);
+    }).on('error', function(error) {
+      cartodb.log.log(error);
+    });
 
     // create layer selector
     function layerSelector(layer) {
@@ -94,27 +103,6 @@
         layer.setQuery(query);
       });
     }
-
-    function initCarto() {
-      cartodb.createVis('map', 'http://axisphilly.cartodb.com/api/v1/viz/murders_88_13/viz.json', {
-          tiles_loader: true,
-          center_lat: 39.983, 
-          center_lon: -75.173,
-          zoom: 14
-      })
-      .done(function(vis, layers) {
-        var sql = new cartodb.SQL({ user: 'axisphilly' });
-
-        // layer 0 is the base layer, layer 1 is cartodb layer
-        console.log(layers);
-        yearSelector(layers[1])
-      })
-      .error(function(err) {
-        console.log(err);
-      });
-    }
-
-    initCarto();
 
     // iScroll for #year_selector
     var myScroll;
