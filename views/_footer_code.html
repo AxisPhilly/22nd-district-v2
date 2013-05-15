@@ -5,8 +5,8 @@
   <script type="text/javascript" src="js/app.libraries.min.js"></script>
 <% } else { %>
   <script type="text/javascript" src="js/lib/underscore.js"></script>
-  <script type="text/javascript" src="js/lib/leaflet.js"></script>
-  <script type="text/javascript" src="js/lib/wax.leaf.js"></script>
+  <!--<script type="text/javascript" src="js/lib/leaflet.js"></script>-->
+  <!--<script type="text/javascript" src="js/lib/wax.leaf.js"></script>-->
   <script type="text/javascript" src="js/lib/foundation.js"></script>
   <script type="text/javascript" src="js/lib/foundation.reveal.js"></script>
   <script type="text/javascript" src="js/lib/fastclick.js"></script>
@@ -41,13 +41,16 @@
         [39.69, -76.20],
         [40.60, -74.14]
       ],
-      zoomControl: false, // readded to the topright corner
+      zoomControl: false, // disable default, readded to the topright corner in app#initMap
       urlPosition: false // updates url with center/x/y
     }
   }
 
   // Kick off map
   app.initMap(function() {
+    L.tileLayer('http://{s}.tiles.mapbox.com/v3/axisphilly.map-rwfs60dd/{z}/{x}/{y}.png', {
+      attribution: '(C) MapBox, OpenStreetMap Contributors'
+    }).addTo(app.map);
 
     var layerURL = 'http://axisphilly.cartodb.com/api/v1/viz/combined_shootings_murders/viz.json';
     cartodb.createLayer(app.map, layerURL, {
@@ -105,18 +108,10 @@
     }
 
     // iScroll for #year_selector
-    var myScroll;
-
-    function loaded() {
-      myScroll = new iScroll('year_selector', {
-        hScrollbar: false,
-        bounce: false
-      });
-    }
-
-    loaded();
-
-    document.addEventListener('DOMContentLoaded', loaded, false);
+    var myScroll = new iScroll('year_selector', {
+      hScrollbar: false,
+      bounce: false
+    });
 
     // scroll propagation fix
     $("#year_selector").on("mousewheel", function(event){ event.preventDefault(); }); // Chrome, Safari and IE8+
