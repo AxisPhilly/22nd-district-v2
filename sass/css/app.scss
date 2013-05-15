@@ -380,3 +380,9 @@ html, body, #map {
     }
   }
 }
+
+//cartodb overrides
+div.cartodb-popup div.cartodb-popup-content-wrapper {
+  width: 100%;
+  max-width: 100%;
+}

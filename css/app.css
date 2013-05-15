@@ -274,3 +274,7 @@ html, body, #map {
       #data-controls .selector li.selected {
         background-color: #FDD441;
         border: 1px solid #333; }
+
+div.cartodb-popup div.cartodb-popup-content-wrapper {
+  width: 100%;
+  max-width: 100%; }
