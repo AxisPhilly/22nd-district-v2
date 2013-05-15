@@ -213,42 +213,64 @@ html, body, #map {
   .button.small {
     padding-top: 0.425em; } }
 
-#year_selector {
-  margin-top: 3px;
-  float: right;
-  top: 6px;
-  height: 90%;
-  margin-right: 10px;
-  padding-left: .7em; }
-
-.toggle {
-  top: 10px;
-  padding: 0px;
-  margin: 0px;
-  margin-right: 10px;
-  float: right;
-  width: 200px;
-  font-size: 14px;
-  cursor: pointer; }
-
-.candy.yellow .slide-button {
-  background-color: #FDD441; }
-
-.selector ul {
-  padding: 0;
-  margin: 0;
-  list-style-type: none; }
-.selector li {
-  background-color: #333;
-  border-bottom: 1px solid #999999;
-  padding: 2px 15px;
-  font-family: "Helvetica", Arial;
-  font-size: 13px;
-  color: #fff;
-  cursor: auto;
-  border-radius: 3px; }
-  .selector li:hover {
-    background-color: #ccc;
-    cursor: pointer; }
-  .selector li.selected {
-    background-color: #FDD441; }
+#data-controls {
+  position: absolute;
+  top: 53px;
+  right: 55px;
+  overflow-y: hidden; }
+  @media (max-width: 960px) {
+    #data-controls {
+      top: 73px; } }
+  @media (max-width: 640px) {
+    #data-controls {
+      right: 5px; } }
+  #data-controls #year_selector {
+    margin-top: 10px;
+    float: right;
+    top: 6px;
+    height: 80px;
+    margin-right: 10px;
+    padding-left: .7em; }
+  #data-controls .toggle {
+    top: 10px;
+    padding: 0px;
+    margin: 0px;
+    float: right;
+    width: 200px;
+    font-size: 14px;
+    cursor: pointer;
+    color: #222; }
+  #data-controls .candy {
+    background-color: rgba(255, 255, 255, 0.9); }
+    #data-controls .candy span {
+      color: #222;
+      font-weight: bold; }
+    #data-controls .candy p {
+      background-color: #fff; }
+    #data-controls .candy .slide-button {
+      background-color: #FDD441;
+      background-image: none; }
+  #data-controls .selector {
+    margin-top: 10px; }
+    #data-controls .selector ul {
+      padding: 0;
+      margin: 0;
+      list-style-type: none; }
+    #data-controls .selector li {
+      background-color: rgba(255, 255, 255, 0.9);
+      opacity: 0.9;
+      border-bottom: 1px solid #999999;
+      padding: 2px 15px;
+      font-family: "Helvetica", Arial;
+      font-size: 13px;
+      color: #222;
+      cursor: auto;
+      font-weight: bold;
+      border-radius: 3px; }
+      #data-controls .selector li:hover {
+        background-color: #fff;
+        opacity: 1;
+        cursor: pointer; }
+      #data-controls .selector li.selected {
+        background-color: #FDD441;
+        border: 1px solid #333; }

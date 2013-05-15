@@ -294,55 +294,89 @@ html, body, #map {
   }
 }
 
-// app
-#year_selector {
-  margin-top: 3px;
-  float: right;
-  top: 6px;
-  height: 90%;
-  margin-right: 10px;
-  padding-left: .7em;
-}
+// data controls 
+#data-controls {
+  position: absolute;
+  top: 53px;
+  right: 55px;
+  overflow-y:hidden;
 
-// toggle
-.toggle {
-  top: 10px;
-  padding: 0px;
-  margin: 0px;
-  margin-right: 10px;
-  float: right;
-  width: 200px;
-  font-size: 14px;
-  cursor: pointer;
-}
-
-.candy.yellow .slide-button { 
-  background-color: #FDD441;
-}
-
-.selector {
-  ul {
-    padding: 0; margin: 0;
-    list-style-type: none;
+  @media(max-width: 960px) {
+    top: 73px;
   }
 
-  li {
-    background-color: #333;
-    border-bottom: 1px solid #999999;
-    padding: 2px 15px;
-    font-family: "Helvetica",Arial;
-    font-size: 13px;
-    color: #fff;
-    cursor: auto;
-    border-radius: 3px;
+  @media(max-width: 640px) {
+    right: 5px;
+  }
 
-    &:hover {
-      background-color: #ccc;
-      cursor: pointer;
+  #year_selector {
+    margin-top: 10px;
+    float: right;
+    top: 6px;
+    height: 80px;
+    margin-right: 10px;
+    padding-left: .7em;
+  }
+
+  .toggle {
+    top: 10px;
+    padding: 0px;
+    margin: 0px;
+    float: right;
+    width: 200px;
+    font-size: 14px;
+    cursor: pointer;
+    color: #222;
+  }
+
+  .candy {
+    background-color: rgba(255, 255, 255, 0.9);
+
+    span {
+      color: #222;
+      font-weight: bold;
     }
 
-    &.selected {
+    p {
+      background-color: #fff;
+    }
+
+    .slide-button {
       background-color: #FDD441;
+      background-image: none;
+    }
+  }
+
+  .selector {
+    margin-top: 10px;
+
+    ul {
+      padding: 0; margin: 0;
+      list-style-type: none;
+    }
+
+    li {
+      background-color: rgba(255, 255, 255, 0.9);
+      opacity: 0.9;
+      border-bottom: 1px solid #999999;
+      padding: 2px 15px;
+      font-family: "Helvetica",Arial;
+      font-size: 13px;
+      color: #222;
+      cursor: auto;
+      font-weight: bold;
+      border-radius: 3px;
+
+      &:hover {
+        background-color: #fff;
+        opacity: 1;
+        cursor: pointer;
+      }
+
+      &.selected {
+        background-color: #FDD441;
+        border: 1px solid #333;
+      }
     }
   }
 }
