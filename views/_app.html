@@ -40,15 +40,15 @@
       <li data="2013">2013</li>
     </ul>
   </div>
-  <label class="checkbox toggle candy yellow" onclick="">
-    <input id="view" type="checkbox" />
-    <p>
-      <span>Murders</span>
-      <span>Shootings</span>
-    </p>
+  <div class="switch candy yellow">
+    <input id="murders" name="view" type="radio" checked>
+    <label for="murders" onclick="">Murders</label>
+
+    <input id="shootings" name="view" type="radio"> 
+    <label for="shootings" onclick="">Shootings</label>
     
     <a class="slide-button"></a>
-  </label>
+  </div>
 </div>
 <div class="description" id="browser-description">
   <h2>Murder in the 22nd District</h2>

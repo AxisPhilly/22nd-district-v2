@@ -231,7 +231,7 @@ html, body, #map {
     height: 80px;
     margin-right: 10px;
     padding-left: .7em; }
-  #data-controls .toggle {
+  #data-controls .switch {
     top: 10px;
     padding: 0px;
     margin: 0px;
@@ -240,11 +240,13 @@ html, body, #map {
     font-size: 14px;
     cursor: pointer;
     color: #222; }
+    #data-controls .switch label {
+      cursor: pointer; }
   #data-controls .candy {
-    background-color: rgba(255, 255, 255, 0.9); }
+    background-color: rgba(255, 255, 255, 0.9);
+    text-shadow: none; }
     #data-controls .candy span {
-      color: #222;
-      font-weight: bold; }
+      color: #222; }
     #data-controls .candy p {
       background-color: #fff; }
     #data-controls .candy .slide-button {

@@ -56,9 +56,14 @@
     cartodb.createLayer(app.map, layerURL, {
       query: 'select * from combined_shootings_murders'
     }).on('done', function(layer) {
+      app.layer = layer;
       app.map.addLayer(layer);
     }).on('error', function(error) {
       cartodb.log.log(error);
+    });
+
+    $('.toggle').click(function(event){
+      
     });
 
     // create layer selector
