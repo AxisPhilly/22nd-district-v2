@@ -212,3 +212,35 @@ html, body, #map {
 @media (max-width: 360px) {
   .button.small {
     padding-top: 0.425em; } }
+
+#year_selector {
+  float: right;
+  top: 2px;
+  height: 100%;
+  margin-right: 10px;
+  padding-left: .7em; }
+
+/*#year_selector {
+  position: absolute;
+  top: 20px;
+  left: 200px;
+  padding: 0;
+  height: 13%;
+}*/
+.selector ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none; }
+.selector li {
+  background-color: #C0C0C0;
+  border-bottom: 1px solid #999999;
+  padding: 2px 15px;
+  font-family: "Helvetica", Arial;
+  font-size: 13px;
+  color: #444;
+  cursor: auto; }
+  .selector li:hover {
+    background-color: #F0F0F0;
+    cursor: pointer; }
+  .selector li.selected {
+    background-color: #EEE; }

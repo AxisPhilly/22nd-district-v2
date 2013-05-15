@@ -34,6 +34,13 @@ app.get('/embed', function(req, res){
   });
 });
 
+app.get('/torque', function(req, res){
+  res.render('torque', {
+    title: 'Fullscreen Map | AxisPhilly',
+    env: app.settings.env
+  });
+});
+
 var port = process.env.PORT || 3000;
 app.listen(port);
 

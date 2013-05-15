@@ -1,5 +1,6 @@
 <!-- Libraries -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
+<script src="http://libs.cartocdn.com/cartodb.js/v2/cartodb.js"></script>
 <% if(env === 'production') { %>
   <script type="text/javascript" src="js/app.libraries.min.js"></script>
 <% } else { %>
@@ -9,6 +10,7 @@
   <script type="text/javascript" src="js/lib/foundation.js"></script>
   <script type="text/javascript" src="js/lib/foundation.reveal.js"></script>
   <script type="text/javascript" src="js/lib/fastclick.js"></script>
+  <script type="text/javascript" src="js/lib/iscroll.js"></script>
 <% } %>
 
 <!-- Init Foundation and Fast Click-->
@@ -40,48 +42,99 @@
         [40.60, -74.14]
       ],
       zoomControl: false, // readded to the topright corner
-      urlPosition: true // updates url with center/x/y
+      urlPosition: false // updates url with center/x/y
     }
   }
 
   // Kick off map
   app.initMap(function() {
-    // Button events
-    $('.find-user').click(function(event){
-      event.preventDefault();
 
-      $(this).find('img').attr('src', 'img/loading.gif');
+    // create layer selector
+    function layerSelector(layer) {
+      var $options = $('#layer_selector li');
+      $options.click(function(e) {
+        console.log('hey');
 
-      app.getLocation(function(position){
-        app.addMarker(position.coords.latitude, position.coords.longitude);
+        // get the area of the selected layer
+        var $li = $(e.target);
+        var layer = $li.attr('data');
 
-        $('.find-user').find('img').attr('src', 'img/marker.png');
+        // deselect all and select the clicked one
+        $options.removeClass('selected');
+        $li.addClass('selected');
+
+        // create query based on data from the layer
+        var query = "select * from " + layer;
+
+        // change the query in the layer to update the map
+        layer.setQuery(query);
       });
-    });
-
-    // Once a geocode request is back and processed,
-    // this function is called for clean up
-    app.geocodeDoneCallback = function() {
-      $('.search').find('img').attr('src', 'img/search.png');
     }
 
-    $('.search.top button').click(function(event){
-      event.preventDefault();
+    // create year selector
+    function yearSelector(layer) {
+      var $options = $('#year_selector li');
+      $options.click(function(e) {
 
-      $(this).find('img').attr('src', 'img/loading.gif');
-      var address = $('.search').find('input').val();
+        // get the area of the selected layer
+        var $li = $(e.target);
+        var year = $li.attr('data');
 
-      app.geocodeRequest(address);
-    });
+        // deselect all and select the clicked one
+        $options.removeClass('selected');
+        $li.addClass('selected');
 
-    $('.search.bottom button').click(function(event){
-      event.preventDefault();
+        // create query based on data from the layer
+        var query = "select * from murders_88_13";
+        if(year !== 'all') {
+          query = "select * from murders_88_13 where year = '" + year + "'";
+        }
 
-      $(this).find('img').attr('src', 'img/loading.gif');
-      var address = $('.search.bottom').find('input').val();
+        // change the query in the layer to update the map
+        layer.setQuery(query);
+      });
+    }
 
-      app.geocodeRequest(address);
-    });
+    function initCarto() {
+      cartodb.createVis('map', 'http://axisphilly.cartodb.com/api/v1/viz/murders_88_13/viz.json', {
+          tiles_loader: true,
+          center_lat: 39.983, 
+          center_lon: -75.173,
+          zoom: 14
+      })
+      .done(function(vis, layers) {
+        var sql = new cartodb.SQL({ user: 'axisphilly' });
+
+        // layer 0 is the base layer, layer 1 is cartodb layer
+        console.log(layers);
+        yearSelector(layers[1])
+      })
+      .error(function(err) {
+        console.log(err);
+      });
+    }
+
+    initCarto();
+
+    // iScroll for #year_selector
+    var myScroll;
+
+    function loaded() {
+      myScroll = new iScroll('year_selector', {
+        hScrollbar: false,
+        bounce: false
+      });
+    }
+
+    loaded();
+
+    document.addEventListener('DOMContentLoaded', loaded, false);
+
+    // scroll propagation fix
+    $("#year_selector").on("mousewheel", function(event){ event.preventDefault(); }); // Chrome, Safari and IE8+
+    $("#year_selector").on("DOMMouseScroll", function(event){ event.preventDefault(); }); // Firefox 14+
+    $("#year_selector").on('MozMousePixelScroll', function(event){ event.preventDefault(); });
+
 
     $('.info').click(function(event){
       event.preventDefault();
