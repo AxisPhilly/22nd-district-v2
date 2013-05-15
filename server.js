@@ -22,7 +22,7 @@ app.use('/img', express.static(__dirname + '/img'));
 
 app.get('/', function(req, res){
   res.render('index', {
-    title: 'Fullscreen Map | AxisPhilly',
+    title: 'Murder in the 22nd District | AxisPhilly',
     env: app.settings.env
   });
 });
@@ -30,13 +30,6 @@ app.get('/', function(req, res){
 app.get('/embed', function(req, res){
   res.render('embed', {
     title: 'App Title | AxisPhilly',
-    env: app.settings.env
-  });
-});
-
-app.get('/torque', function(req, res){
-  res.render('torque', {
-    title: 'Fullscreen Map | AxisPhilly',
     env: app.settings.env
   });
 });
