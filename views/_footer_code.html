@@ -64,7 +64,7 @@
 
       cartodb.createLayer(app.map, layerURL, {
         query: query
-      }).on('done', function(layer, anything) {
+      }).on('done', function(layer) {
         app.cartoDBlayer = layer;
         app.map.addLayer(layer);
       }).on('error', function(error) {
