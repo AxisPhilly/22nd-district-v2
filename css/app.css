@@ -251,7 +251,8 @@ html, body, #map {
       background-color: #fff; }
     #data-controls .candy .slide-button {
       background-color: #FDD441;
-      background-image: none; }
+      background-image: none;
+      opacity: 0.8; }
   #data-controls .selector {
     margin-top: 10px; }
     #data-controls .selector ul {
