@@ -23,7 +23,8 @@ module.exports = function(grunt) {
             'js/lib/wax.leaf.js',
             'js/lib/foundation.js',
             'js/lib/foundation.reveal.js',
-            'js/lib/fastclick.js'
+            'js/lib/fastclick.js',
+            'js/lib/iscroll.js'
           ]
         }
       }
@@ -43,7 +44,8 @@ module.exports = function(grunt) {
         src: [
           'css/normalize.css',
           'css/lib/foundation.min.css',
-          'css/lib/leaflet.css'
+          'css/lib/leaflet.css',
+          'css/lib/toggle-switch.css'
           ],
         dest: 'www/css/app.libraries.css'
       }
