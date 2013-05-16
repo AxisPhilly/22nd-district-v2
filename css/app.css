@@ -47,6 +47,9 @@ html, body, #map {
   @media (max-width: 960px) {
     #bottom-nav {
       display: block; } }
+  @media (max-width: 360px) {
+    #bottom-nav {
+      display: none; } }
 
 #title-bar {
   position: fixed;
