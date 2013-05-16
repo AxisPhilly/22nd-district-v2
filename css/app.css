@@ -227,6 +227,9 @@ html, body, #map {
   @media (max-width: 640px) {
     #data-controls {
       right: 5px; } }
+  @media (max-width: 360px) {
+    #data-controls {
+      top: 60px; } }
   #data-controls #year-selector {
     margin-top: 10px;
     float: right;
@@ -284,3 +287,6 @@ html, body, #map {
 div.cartodb-popup div.cartodb-popup-content-wrapper {
   width: 100%;
   max-width: 100%; }
+
+div.cartodb-infowindow {
+  z-index: 3; }

@@ -313,6 +313,10 @@ html, body, #map {
     right: 5px;
   }
 
+  @media(max-width: 360px) {
+    top: 60px;
+  }
+
   #year-selector {
     margin-top: 10px;
     float: right;
