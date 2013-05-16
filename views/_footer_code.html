@@ -53,12 +53,16 @@
     }).addTo(app.map);
 
     app.addCartoDBLayer = function(layerName, year) {
+      if (app.cartoDBlayer) { app.removeCartoDBLayer(); }
+
       var layerURL = 'http://axisphilly.cartodb.com/api/v1/viz/combined_shootings_murders/viz.json',
           query = "SELECT * FROM combined_shootings_murders WHERE type = '" + layerName + "'";
       
       if(year !== 'all') {
-        query += "' AND YEAR = '" + year + "'"; 
+        query += " AND YEAR = '" + year + "'"; 
       }
+
+      console.log(query);
 
       cartodb.createLayer(app.map, layerURL, {
         query: query
@@ -74,35 +78,61 @@
       app.map.removeLayer(app.cartoDBlayer);
     }
 
+    app.getSelectedYear = function() {
+      var year = $('#year-selector li.selected').attr("data");
+
+      return year;
+    }
+
+    app.getSelectedLayer = function() {
+      var layer = $('input[name="view"]:checked').attr('id');
+
+      return layer;
+    }
+
+    app.initYearSelector = function() {
+      var $options = $('#year-selector li');
+      $options.click(function(e) {
+        var $li = $(e.target);
+        $options.removeClass('selected');
+        $li.addClass('selected');
+
+        var layerName = app.getSelectedLayer();
+        var year = $li.attr('data');
+        app.addCartoDBLayer(layerName, year);
+      });
+    }
+
     app.layerName = 'murder';
     app.addCartoDBLayer('murder', 'all');
+    app.initYearSelector();
 
-    $('#shootings').click(function(event){
+    $('#shooting').click(function(event){
       if(app.layerName !== 'shooting') {
         app.layerName = 'shooting';
-        app.removeCartoDBLayer();
-        app.addCartoDBLayer(app.layerName, 'all');
+        var year = app.getSelectedYear();
+        app.addCartoDBLayer(app.layerName, year);
       } 
     });
 
-    $('#murders').click(function(event){
+    $('#murder').click(function(event){
       if(app.layerName !== 'murder') {
         app.layerName = 'murder';
-        app.removeCartoDBLayer();
-        app.addCartoDBLayer(app.layerName, 'all');
+        var year = app.getSelectedYear();
+        app.addCartoDBLayer(app.layerName, year);
       }
     });
 
     // iScroll for #year_selector
-    var myScroll = new iScroll('year_selector', {
+    var myScroll = new iScroll('year-selector', {
       hScrollbar: false,
       bounce: false
     });
 
     // scroll propagation fix
-    $("#year_selector").on("mousewheel", function(event){ event.preventDefault(); }); // Chrome, Safari and IE8+
-    $("#year_selector").on("DOMMouseScroll", function(event){ event.preventDefault(); }); // Firefox 14+
-    $("#year_selector").on('MozMousePixelScroll', function(event){ event.preventDefault(); });
+    $("#year-selector").on("mousewheel", function(event){ event.preventDefault(); }); // Chrome, Safari and IE8+
+    $("#year-selector").on("DOMMouseScroll", function(event){ event.preventDefault(); }); // Firefox 14+
+    $("#year-selector").on('MozMousePixelScroll', function(event){ event.preventDefault(); });
 
     $('.info').click(function(event){
       event.preventDefault();

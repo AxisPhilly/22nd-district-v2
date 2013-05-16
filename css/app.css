@@ -224,7 +224,7 @@ html, body, #map {
   @media (max-width: 640px) {
     #data-controls {
       right: 5px; } }
-  #data-controls #year_selector {
+  #data-controls #year-selector {
     margin-top: 10px;
     float: right;
     top: 6px;
