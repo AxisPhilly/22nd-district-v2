@@ -52,82 +52,46 @@
       attribution: 'Basemap: Data © OpenStreetMap contributors. Design © MapBox'
     }).addTo(app.map);
 
-    var layerURL = 'http://axisphilly.cartodb.com/api/v1/viz/combined_shootings_murders/viz.json';
-    cartodb.createLayer(app.map, layerURL, {
-      query: 'select * from combined_shootings_murders'
-    }).on('done', function(layer) {
-      app.layer = layer;
-      app.map.addLayer(layer);
-    }).on('error', function(error) {
-      cartodb.log.log(error);
-    });
+    app.addCartoDBLayer = function(layerName, year) {
+      var layerURL = 'http://axisphilly.cartodb.com/api/v1/viz/combined_shootings_murders/viz.json',
+          query = "SELECT * FROM combined_shootings_murders WHERE type = '" + layerName + "'";
+      
+      if(year !== 'all') {
+        query += "' AND YEAR = '" + year + "'"; 
+      }
 
-    app.layerName = 'murders';
+      cartodb.createLayer(app.map, layerURL, {
+        query: query
+      }).on('done', function(layer) {
+        app.cartoDBlayer = layer;
+        app.map.addLayer(layer);
+      }).on('error', function(error) {
+        cartodb.log.log(error);
+      });
+    }
+
+    app.removeCartoDBLayer = function() {
+      app.map.removeLayer(app.cartoDBlayer);
+    }
+
+    app.layerName = 'murder';
+    app.addCartoDBLayer('murder', 'all');
 
     $('#shootings').click(function(event){
-      if(app.layerName !== 'shootings') {
-        app.layerName = 'shootings';
-        console.log('switch');
-      } else {
-        console.log('same')
-      }
+      if(app.layerName !== 'shooting') {
+        app.layerName = 'shooting';
+        app.removeCartoDBLayer();
+        app.addCartoDBLayer(app.layerName, 'all');
+      } 
     });
 
     $('#murders').click(function(event){
-      if(app.layerName !== 'murders') {
-        app.layerName = 'murders';
-        console.log('switch');
-      } else {
-        console.log('same')
+      if(app.layerName !== 'murder') {
+        app.layerName = 'murder';
+        app.removeCartoDBLayer();
+        app.addCartoDBLayer(app.layerName, 'all');
       }
     });
-
-
-    // create layer selector
-    function layerSelector(layer) {
-      var $options = $('#layer_selector li');
-      $options.click(function(e) {
-        console.log('hey');
-
-        // get the area of the selected layer
-        var $li = $(e.target);
-        var layer = $li.attr('data');
-
-        // deselect all and select the clicked one
-        $options.removeClass('selected');
-        $li.addClass('selected');
-
-        // create query based on data from the layer
-        var query = "select * from " + layer;
-
-        // change the query in the layer to update the map
-        layer.setQuery(query);
-      });
-    }
-
-    // create year selector
-    function yearSelector(layer) {
-      var $options = $('#year_selector li');
-      $options.click(function(e) {
-
-        // get the area of the selected layer
-        var $li = $(e.target);
-        var year = $li.attr('data');
-
-        // deselect all and select the clicked one
-        $options.removeClass('selected');
-        $li.addClass('selected');
-
-        // create query based on data from the layer
-        var query = "select * from murders_88_13";
-        if(year !== 'all') {
-          query = "select * from murders_88_13 where year = '" + year + "'";
-        }
-
-        // change the query in the layer to update the map
-        layer.setQuery(query);
-      });
-    }
 
     // iScroll for #year_selector
     var myScroll = new iScroll('year_selector', {
@@ -140,7 +104,6 @@
     $("#year_selector").on("DOMMouseScroll", function(event){ event.preventDefault(); }); // Firefox 14+
     $("#year_selector").on('MozMousePixelScroll', function(event){ event.preventDefault(); });
 
-
     $('.info').click(function(event){
       event.preventDefault();
 
@@ -150,7 +113,8 @@
     $('.embed').click(function(event){
       event.preventDefault();
 
-      $('#embedModal code').html('<code>&lt;iframe width="100%" height="600" src="' + document.URL + '/embed.html" frameborder="0"></iframe></code>');
+      $('#embedModal code').html('<code>&lt;iframe width="100%" height="600" src="' + 
+        document.URL + '/embed.html" frameborder="0"></iframe></code>');
       $('#embedModal').foundation('reveal', 'open');
     });
   });
