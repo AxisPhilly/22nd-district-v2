@@ -34,8 +34,8 @@
     tileURL: 'http://api.tiles.mapbox.com/v3/axisphilly.map-rwfs60dd.jsonp',
     mapOptions: {
       center: [39.987, -75.179],
-      zoom: 14,
-      minZoom: 11,
+      zoom: 13,
+      minZoom: 13,
       maxZoom: 18,
       maxBounds: [
         [39.69, -76.20],
@@ -62,11 +62,9 @@
         query += " AND YEAR = '" + year + "'"; 
       }
 
-      console.log(query);
-
       cartodb.createLayer(app.map, layerURL, {
         query: query
-      }).on('done', function(layer) {
+      }).on('done', function(layer, anything) {
         app.cartoDBlayer = layer;
         app.map.addLayer(layer);
       }).on('error', function(error) {
@@ -76,6 +74,8 @@
 
     app.removeCartoDBLayer = function() {
       app.map.removeLayer(app.cartoDBlayer);
+      console.log(app.cartoDBlayer);
+      app.cartoDBlayer.remove();
     }
 
     app.getSelectedYear = function() {
