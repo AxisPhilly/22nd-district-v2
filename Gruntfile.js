@@ -60,7 +60,8 @@ module.exports = function(grunt) {
           {expand: true, src: ['css/lib/*'], dest: 'www/'},
           {expand: true, src: ['js/lib/*'], dest: 'www/'},
           {expand: true, src: ['img/lib/**'], dest: 'www/'},
-          {expand: true, src: ['img/**'], dest: 'www/'}
+          {expand: true, src: ['img/**'], dest: 'www/'},
+          {expand: true, src: ['data/**'], dest: 'www/'}
         ]
       }
     },
