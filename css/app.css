@@ -178,7 +178,8 @@ html, body, #map {
     font-size: 24px;
     margin: 2px 0; }
   .description .byline {
-    margin: 6px 0; }
+    margin: 6px 0;
+    line-height: 1.5em; }
 
 .leaflet-control-zoom {
   top: 50px; }
