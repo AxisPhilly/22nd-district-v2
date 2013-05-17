@@ -57,6 +57,20 @@
     app.layerName = 'murder';
     app.addCartoDBLayer('murder', 'all');
 
+    // Add police district layer
+    $.ajax({
+      url: '/data/police-dist-22.json',
+      success: function(resp) {
+        L.geoJson(resp, {
+          style: {
+            fill: false,
+            weight: 3,
+            color: '#FFA500'
+          }
+        }).addTo(app.map);
+      }
+    })
+
     // Setup the year selector control
     app.initYearSelector();
 
