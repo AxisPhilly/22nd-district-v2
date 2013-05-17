@@ -92,6 +92,7 @@
         app.layerName = 'shooting';
         var year = app.getSelectedYear();
         app.addCartoDBLayer(app.layerName, year);
+        app.hideLegend();
       } 
     });
 
@@ -100,6 +101,7 @@
         app.layerName = 'murder';
         var year = app.getSelectedYear();
         app.addCartoDBLayer(app.layerName, year);
+        app.showLegend();
       }
     });
 

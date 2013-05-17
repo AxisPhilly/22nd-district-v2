@@ -148,6 +148,14 @@ app.getSelectedLayer = function() {
   return layer;
 };
 
+app.showLegend = function() {
+  $('#legend').show();
+};
+
+app.hideLegend = function() {
+  $('#legend').hide();
+};
+
 app.initYearSelector = function() {
   var $options = $('#year-selector li');
   $options.click(function(e) {
