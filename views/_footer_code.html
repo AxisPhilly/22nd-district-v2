@@ -48,64 +48,30 @@
 
   // Kick off map
   app.initMap(function() {
+    // Add basemap from MapBox
     L.tileLayer('http://{s}.tiles.mapbox.com/v3/axisphilly.map-rwfs60dd/{z}/{x}/{y}.png', {
       attribution: 'Basemap: Data © OpenStreetMap contributors. Design © MapBox'
     }).addTo(app.map);
 
-    app.addCartoDBLayer = function(layerName, year) {
-      if (app.cartoDBlayer) { app.removeCartoDBLayer(); }
-
-      var layerURL = 'http://axisphilly.cartodb.com/api/v1/viz/combined_shootings_murders/viz.json',
-          query = "SELECT * FROM combined_shootings_murders WHERE type = '" + layerName + "'";
-      
-      if(year !== 'all') {
-        query += " AND YEAR = '" + year + "'"; 
-      }
-
-      cartodb.createLayer(app.map, layerURL, {
-        query: query
-      }).on('done', function(layer) {
-        app.cartoDBlayer = layer;
-        app.map.addLayer(layer);
-      }).on('error', function(error) {
-        cartodb.log.log(error);
-      });
-    }
-
-    app.removeCartoDBLayer = function() {
-      app.map.removeLayer(app.cartoDBlayer);
-      app.cartoDBlayer.remove();
-    }
-
-    app.getSelectedYear = function() {
-      var year = $('#year-selector li.selected').attr("data");
-
-      return year;
-    }
-
-    app.getSelectedLayer = function() {
-      var layer = $('input[name="view"]:checked').attr('id');
-
-      return layer;
-    }
-
-    app.initYearSelector = function() {
-      var $options = $('#year-selector li');
-      $options.click(function(e) {
-        var $li = $(e.target);
-        $options.removeClass('selected');
-        $li.addClass('selected');
-
-        var layerName = app.getSelectedLayer();
-        var year = $li.attr('data');
-        app.addCartoDBLayer(layerName, year);
-      });
-    }
-
+    // Setup the initial data layer
     app.layerName = 'murder';
     app.addCartoDBLayer('murder', 'all');
+
+    // Setup the year selector control
     app.initYearSelector();
 
+    // iScroll for #year_selector
+    var myScroll = new iScroll('year-selector', {
+      hScrollbar: false,
+      bounce: false
+    });
+
+    // iScroll event propagation fix
+    $("#year-selector").on("mousewheel", function(event){ event.preventDefault(); }); // Chrome, Safari and IE8+
+    $("#year-selector").on("DOMMouseScroll", function(event){ event.preventDefault(); }); // Firefox 14+
+    $("#year-selector").on('MozMousePixelScroll', function(event){ event.preventDefault(); });
+
+    // Events
     $('#shooting').click(function(event){
       if(app.layerName !== 'shooting') {
         app.layerName = 'shooting';
@@ -121,17 +87,6 @@
         app.addCartoDBLayer(app.layerName, year);
       }
     });
-
-    // iScroll for #year_selector
-    var myScroll = new iScroll('year-selector', {
-      hScrollbar: false,
-      bounce: false
-    });
-
-    // scroll propagation fix
-    $("#year-selector").on("mousewheel", function(event){ event.preventDefault(); }); // Chrome, Safari and IE8+
-    $("#year-selector").on("DOMMouseScroll", function(event){ event.preventDefault(); }); // Firefox 14+
-    $("#year-selector").on('MozMousePixelScroll', function(event){ event.preventDefault(); });
 
     $('.info').click(function(event){
       event.preventDefault();

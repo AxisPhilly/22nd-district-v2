@@ -108,3 +108,55 @@ app.processGeocodeResponse = function(resp) {
 
   if (app.geocodeDoneCallback && typeof app.geocodeDoneCallback === 'function') { app.geocodeDoneCallback(); }
 };
+
+// APP SPECIFIC
+
+app.addCartoDBLayer = function(layerName, year) {
+  if (app.cartoDBlayer) { app.removeCartoDBLayer(); }
+
+  var layerURL = 'http://axisphilly.cartodb.com/api/v1/viz/combined_shootings_murders/viz.json',
+      query = "SELECT * FROM combined_shootings_murders WHERE type = '" + layerName + "'";
+
+  if(year !== 'all') {
+    query += " AND YEAR = '" + year + "'";
+  }
+
+  cartodb.createLayer(app.map, layerURL, {
+    query: query
+  }).on('done', function(layer) {
+    app.cartoDBlayer = layer;
+    app.map.addLayer(layer);
+  }).on('error', function(error) {
+    cartodb.log.log(error);
+  });
+};
+
+app.removeCartoDBLayer = function() {
+  app.map.removeLayer(app.cartoDBlayer);
+  app.cartoDBlayer.remove();
+};
+
+app.getSelectedYear = function() {
+  var year = $('#year-selector li.selected').attr("data");
+
+  return year;
+};
+
+app.getSelectedLayer = function() {
+  var layer = $('input[name="view"]:checked').attr('id');
+
+  return layer;
+};
+
+app.initYearSelector = function() {
+  var $options = $('#year-selector li');
+  $options.click(function(e) {
+    var $li = $(e.target);
+    $options.removeClass('selected');
+    $li.addClass('selected');
+
+    var layerName = app.getSelectedLayer();
+    var year = $li.attr('data');
+    app.addCartoDBLayer(layerName, year);
+  });
+};
