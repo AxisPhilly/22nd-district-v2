@@ -194,15 +194,18 @@ html, body, #map {
   background-color: #fff;
   font-size: 14px; }
   #legend strong {
-    display: inline-block;
+    display: inline;
     padding-bottom: 4px; }
   #legend ul {
+    display: inline;
     margin: 0;
     padding: 0;
     list-style-type: none; }
-    #legend ul li span {
-      display: inline-block;
-      width: 16px; }
+    #legend ul li {
+      display: inline; }
+      #legend ul li span {
+        display: inline-block;
+        width: 16px; }
   @media (max-width: 960px) {
     #legend {
       bottom: 60px; } }

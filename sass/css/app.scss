@@ -263,16 +263,18 @@ html, body, #map {
   font-size: 14px;
 
   strong {
-    display: inline-block;
+    display: inline;
     padding-bottom: 4px;
   }
 
   ul {
+    display: inline;
     margin: 0;
     padding: 0;
     list-style-type: none;
 
     li {
+      display: inline;
 
       span {
         display: inline-block;
