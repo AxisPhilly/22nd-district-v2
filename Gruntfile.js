@@ -8,7 +8,7 @@ module.exports = function(grunt) {
     uglify: {
       options: {
         mangle: false,
-        preserveComments: true
+        preserveComments: 'some'
       },
       app: {
         files: {
@@ -18,9 +18,9 @@ module.exports = function(grunt) {
       lib: {
         files: {
           'www/js/app.libraries.min.js': [
+            'js/lib/jquery.min.js',
             'js/lib/underscore.js',
-            'js/lib/leaflet.js',
-            'js/lib/wax.leaf.js',
+            'js/lib/cartodb.js',
             'js/lib/foundation.js',
             'js/lib/foundation.reveal.js',
             'js/lib/fastclick.js',
@@ -44,6 +44,7 @@ module.exports = function(grunt) {
         src: [
           'css/normalize.css',
           'css/lib/foundation.min.css',
+          'css/lib/cartodb.css',
           'css/lib/leaflet.css',
           'css/lib/toggle-switch.css'
           ],
@@ -103,6 +104,10 @@ module.exports = function(grunt) {
         {
           src: 'www/img/leaflet/*',
           dest: '<%= pkg.name %>/img/leaflet'
+        },
+        {
+          src: 'www/img/cartodb/*',
+          dest: '<%= pkg.name %>/img/cartodb'
         }
       ]
     }
