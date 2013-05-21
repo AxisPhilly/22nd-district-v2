@@ -1,5 +1,6 @@
 var express = require('express');
 var sass = require('node-sass');
+var pkg = require('./package.json');
 
 var app = express();
 
@@ -24,14 +25,16 @@ app.use('/data', express.static(__dirname + '/data'));
 app.get('/', function(req, res){
   res.render('index', {
     title: 'Murder in the 22nd District | AxisPhilly',
-    env: app.settings.env
+    env: app.settings.env,
+    version: pkg.version
   });
 });
 
 app.get('/embed', function(req, res){
   res.render('embed', {
     title: 'App Title | AxisPhilly',
-    env: app.settings.env
+    env: app.settings.env,
+    version: pkg.version
   });
 });
 
@@ -39,6 +42,7 @@ var port = process.env.PORT || 3000;
 app.listen(port);
 
 console.log('Express started on port ' + port);
+console.log('App Version: ' + pkg.version);
 
 // make the express server available when this file is required
 module.exports = app;

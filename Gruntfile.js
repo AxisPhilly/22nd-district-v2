@@ -12,12 +12,12 @@ module.exports = function(grunt) {
       },
       app: {
         files: {
-          'www/js/app.min.js': 'js/app.js'
+          'www/js/app.min.<%= pkg.version %>.js': 'js/app.js'
         }
       },
       lib: {
         files: {
-          'www/js/app.libraries.min.js': [
+          'www/js/app.libraries.min.<%= pkg.version %>.js': [
             'js/lib/jquery.min.js',
             'js/lib/underscore.js',
             'js/lib/cartodb.js',
@@ -35,7 +35,7 @@ module.exports = function(grunt) {
           style: 'compressed'
         },
         files: {
-          'www/css/app.css': 'sass/css/app.scss'
+          'www/css/app.<%= pkg.version %>.css': 'sass/css/app.scss'
         }
       }
     },
@@ -48,7 +48,7 @@ module.exports = function(grunt) {
           'css/lib/leaflet.css',
           'css/lib/toggle-switch.css'
           ],
-        dest: 'www/css/app.libraries.css'
+        dest: 'www/css/app.libraries.<%= pkg.version %>.css'
       }
     },
     copy: {
