@@ -27,13 +27,23 @@
   <script type="text/javascript" src="js/app.js"></script>
 <% } %>
 <script type="text/javascript">
+  var zoom = 14,
+      center = [39.988, -75.185];
+
+  if ($(window).width() <= 480) {
+    zoom = 13;
+    center = [39.99001022351317, -75.1736068725586]; 
+  } else if ($(window).width() <= 980) {
+    center = [39.98434285770052, -75.17459392547607];
+  }
+
   // Default settings. Zoom and center overridden by URL params, if they exist
   app.opts = {
     mapContainer: 'map',
     tileURL: 'http://api.tiles.mapbox.com/v3/axisphilly.map-rwfs60dd.jsonp',
     mapOptions: {
-      center: [39.988, -75.185],
-      zoom: 14,
+      center: center,
+      zoom: zoom,
       minZoom: 13,
       maxZoom: 18,
       maxBounds: [
