@@ -181,7 +181,7 @@ html, body, #map {
     margin: 6px 0;
     line-height: 1.5em; }
 
-#legend {
+.legend {
   bottom: 25px;
   right: 10px;
   position: absolute;
@@ -193,25 +193,30 @@ html, body, #map {
   border-radius: 3px;
   background-color: #fff;
   font-size: 14px; }
-  #legend strong {
+  .legend.info-box {
+    position: relative;
+    margin-top: 10px;
+    bottom: 0;
+    right: 0; }
+    @media (max-width: 960px) {
+      .legend.info-box {
+        display: block; } }
+  .legend strong {
     display: inline;
     padding-bottom: 4px; }
-  #legend ul {
+  .legend ul {
     display: inline;
     margin: 0;
     padding: 0;
     list-style-type: none; }
-    #legend ul li {
+    .legend ul li {
       display: inline; }
-      #legend ul li span {
+      .legend ul li span {
         display: inline-block;
         width: 16px; }
   @media (max-width: 960px) {
-    #legend {
-      bottom: 60px; } }
-  @media (max-width: 360px) {
-    #legend {
-      bottom: 5px; } }
+    .legend {
+      display: none; } }
 
 .leaflet-control-zoom {
   top: 50px; }

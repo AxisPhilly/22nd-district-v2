@@ -249,7 +249,7 @@ html, body, #map {
 }
 
 // legend
-#legend {
+.legend {
   bottom: 25px;
   right: 10px;
   position: absolute;
@@ -261,6 +261,17 @@ html, body, #map {
   border-radius: 3px;
   background-color: #fff;
   font-size: 14px;
+
+  &.info-box {
+    position: relative;
+    margin-top: 10px;
+    bottom: 0;
+    right: 0;
+
+    @media(max-width: 960px) {
+      display: block;
+    }
+  }
 
   strong {
     display: inline;
@@ -284,11 +295,7 @@ html, body, #map {
   }
 
   @media(max-width: 960px) {
-    bottom: 60px;
-  }
-
-  @media(max-width: 360px) {
-    bottom: 5px;
+    display: none;
   }
 }
 

@@ -149,11 +149,11 @@ app.getSelectedLayer = function() {
 };
 
 app.showLegend = function() {
-  $('#legend').show();
+  $('.legend').show();
 };
 
 app.hideLegend = function() {
-  $('#legend').hide();
+  $('.legend').hide();
 };
 
 app.initYearSelector = function() {
