@@ -21,13 +21,13 @@ html, body, #map {
     top: 4px;
     height: 2.6em;
     font-size: 16px; }
-    @media (max-width: 360px) {
+    @media (max-width: 480px) {
       .bar .button {
         line-height: 1.1em;
         top: 4px;
         height: 1.9em;
         font-size: 14px; } }
-  @media (max-width: 360px) {
+  @media (max-width: 480px) {
     .bar {
       height: 35px; } }
 
@@ -35,7 +35,7 @@ html, body, #map {
   top: 0; }
   #top-nav img.logo {
     padding: 10px; }
-    @media (max-width: 360px) {
+    @media (max-width: 480px) {
       #top-nav img.logo {
         margin-top: -1px;
         width: 150px; } }
@@ -47,7 +47,7 @@ html, body, #map {
   @media (max-width: 960px) {
     #bottom-nav {
       display: block; } }
-  @media (max-width: 360px) {
+  @media (max-width: 480px) {
     #bottom-nav {
       display: none; } }
 
@@ -66,7 +66,7 @@ html, body, #map {
   @media (max-width: 960px) {
     #title-bar {
       display: block; } }
-  @media (max-width: 360px) {
+  @media (max-width: 480px) {
     #title-bar {
       top: 36px; } }
 
@@ -95,7 +95,7 @@ html, body, #map {
   @media (min-width: 960px) {
     .embed.bottom {
       display: none; } }
-  @media (max-width: 360px) {
+  @media (max-width: 480px) {
     .embed.bottom {
       display: none; } }
 
@@ -104,7 +104,7 @@ html, body, #map {
   @media (max-width: 960px) {
     .info {
       display: block; } }
-  @media (max-width: 360px) {
+  @media (max-width: 480px) {
     .info {
       padding-right: 0.2em;
       padding-left: 0.2em; } }
@@ -132,7 +132,7 @@ html, body, #map {
     border: 1px solid #ccc;
     color: #444;
     font-size: 16px; }
-    @media (max-width: 360px) {
+    @media (max-width: 480px) {
       .search input {
         height: 26px;
         font-size: 11px; } }
@@ -147,12 +147,12 @@ html, body, #map {
     padding: 0;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0; }
-    @media (max-width: 360px) {
+    @media (max-width: 480px) {
       .search button.find {
         height: 1.7em; } }
     .search button.find img {
       height: 40px; }
-      @media (max-width: 360px) {
+      @media (max-width: 480px) {
         .search button.find img {
           height: 30px; } }
 
@@ -250,7 +250,7 @@ html, body, #map {
   box-shadow: none;
   -webkit-box-shadow: none; }
 
-@media (max-width: 360px) {
+@media (max-width: 480px) {
   .button.small {
     padding-top: 0.425em; } }
 
@@ -265,7 +265,7 @@ html, body, #map {
   @media (max-width: 640px) {
     #data-controls {
       right: 5px; } }
-  @media (max-width: 360px) {
+  @media (max-width: 480px) {
     #data-controls {
       top: 60px; } }
   #data-controls #year-selector {

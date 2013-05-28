@@ -28,7 +28,7 @@ html, body, #map {
     height: 2.6em;
     font-size: 16px;
 
-    @media(max-width: 360px) {
+    @media(max-width: 480px) {
       line-height: 1.1em;
       top: 4px;
       height: 1.9em;
@@ -36,7 +36,7 @@ html, body, #map {
     }
   }
 
-  @media(max-width: 360px) {
+  @media(max-width: 480px) {
     height: 35px;
   }
 }
@@ -47,7 +47,7 @@ html, body, #map {
   img.logo {
     padding: 10px;
 
-    @media(max-width: 360px) {
+    @media(max-width: 480px) {
       margin-top: -1px;
       width: 150px;
     }
@@ -63,7 +63,7 @@ html, body, #map {
     display: block;
   }
 
-  @media(max-width: 360px) {
+  @media(max-width: 480px) {
     display: none;
   }
 }
@@ -86,7 +86,7 @@ html, body, #map {
     display: block;
   }
 
-  @media(max-width: 360px) {
+  @media(max-width: 480px) {
     top: 36px;
   }
 }
@@ -129,7 +129,7 @@ html, body, #map {
       display: none;
     }
 
-    @media(max-width: 360px) {
+    @media(max-width: 480px) {
       display: none;
     }
   }
@@ -142,7 +142,7 @@ html, body, #map {
     display: block;
   }
 
-  @media(max-width: 360px) {
+  @media(max-width: 480px) {
     padding-right: 0.2em;
     padding-left: 0.2em;
   }
@@ -178,7 +178,7 @@ html, body, #map {
     color: #444;
     font-size: 16px;
 
-    @media(max-width: 360px) {
+    @media(max-width: 480px) {
       height: 26px;
       font-size: 11px;
     }
@@ -198,14 +198,14 @@ html, body, #map {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
 
-    @media(max-width: 360px) {
+    @media(max-width: 480px) {
       height: 1.7em;
     }
 
     img {
       height: 40px;
 
-      @media(max-width: 360px) {
+      @media(max-width: 480px) {
         height: 30px;
       }
     }
@@ -345,7 +345,7 @@ html, body, #map {
 }
 
 .button.small {
-  @media(max-width: 360px) {
+  @media(max-width: 480px) {
     padding-top: 0.425em;
   }
 }
@@ -365,7 +365,7 @@ html, body, #map {
     right: 5px;
   }
 
-  @media(max-width: 360px) {
+  @media(max-width: 480px) {
     top: 60px;
   }
 
