@@ -30,13 +30,6 @@
   var zoom = 14,
       center = [39.988, -75.185];
 
-  if ($(window).width() <= 480) {
-    zoom = 13;
-    center = [39.99001022351317, -75.1736068725586]; 
-  } else if ($(window).width() <= 980) {
-    center = [39.98434285770052, -75.17459392547607];
-  }
-
   // Default settings. Zoom and center overridden by URL params, if they exist
   app.opts = {
     mapContainer: 'map',
@@ -51,7 +44,7 @@
         [40.60, -74.14]
       ],
       zoomControl: false, // disable default, readded to the topright corner in app#initMap
-      urlPosition: false // updates url with center/x/y
+      urlPosition: true // updates url with center/x/y
     }
   }
 
@@ -59,7 +52,7 @@
   app.initMap(function() {
     // Add basemap from MapBox
     L.tileLayer('http://{s}.tiles.mapbox.com/v3/axisphilly.map-rwfs60dd/{z}/{x}/{y}.png', {
-      attribution: 'Basemap: Data © OpenStreetMap contributors. Design © MapBox'
+      attribution: 'Source: Philadelphia Police Department. Basemap: Data © OpenStreetMap contributors. Design © MapBox'
     }).addTo(app.map);
 
     // Setup the initial data layer

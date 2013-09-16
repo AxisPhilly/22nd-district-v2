@@ -2,6 +2,7 @@ import csv
 import requests
 import cStringIO
 import codecs
+import re
 
 output = []
 
@@ -34,17 +35,32 @@ class DictUnicodeWriter(object):
     def writeheader(self):
         self.writer.writeheader()
 
+print "Starting up..."
 
 # shootings
 with open('../data/shooting_2001_2013.csv', 'rU') as f:
     c = csv.reader(f, delimiter=',', quotechar='"')
     c.next()
 
+    print "Geocoding shootings..."
+
+    rowcount = 0 
+
     for row in c:
 
-        #r = requests.get('http://localhost:8080/maps/api/geocode/json?sensor=false%20&address=' + address)
-
         address = row[3] + ', Philadelphia, PA'
+        address = re.sub(r'\&', 'and', address)
+        r = requests.get('http://localhost:8080/street2coordinates/' + address)
+
+        lat = ''
+        lng = ''
+        confidence = 0
+        results = r.json().itervalues().next()
+
+        if results:
+            lat = results['latitude']
+            lng = results['longitude']
+            confidence = results['confidence']
 
         item = {
             'date': row[0],
@@ -55,15 +71,27 @@ with open('../data/shooting_2001_2013.csv', 'rU') as f:
             'sex': row[5],
             'age': row[7],
             'category': 'shooting',
-            'weapon': 'Firearm'
+            'weapon': 'Firearm',
+            'lat': str(lat), 
+            'lng': str(lng),
+            'confidence': str(confidence)
         }
 
         output.append(item)
+
+        rowcount += 1
+        print  "Row " + str(rowcount) + " done."
+
+    print "Finished geocoding shootings..."
 
 # murders
 with open('../data/murder_2000_2013.csv', 'rU') as f:
     c = csv.reader(f, delimiter=',', quotechar='"')
     c.next()
+
+    print "Geocoding murders..."
+
+    rowcount = 0
 
     for row in c:
 
@@ -74,6 +102,19 @@ with open('../data/murder_2000_2013.csv', 'rU') as f:
             else:
                 address = row[4] + ' ' + row[6] + ', Philadelphia, PA'
 
+            address = re.sub(r'\&', 'and', address)
+            r = requests.get('http://localhost:8080/street2coordinates/' + address)
+
+            lat = ''
+            lng = ''
+            confidence = 0
+            results = r.json().itervalues().next()
+
+            if results:
+                lat = results['latitude']
+                lng = results['longitude']
+                confidence = results['confidence']
+
             item = {
                 'date': row[1],
                 'year': row[2],
@@ -83,17 +124,29 @@ with open('../data/murder_2000_2013.csv', 'rU') as f:
                 'sex': row[9],
                 'age': row[7],
                 'category': 'murder',
-                'weapon': row[12].title()
+                'weapon': row[12].title(),
+                'lat': str(lat), 
+                'lng': str(lng),
+                'confidence': str(confidence)
             }
 
         output.append(item)
 
-fields = ['date', 'year', 'district', 'address', 'race', 'sex', 'age', 'category', 'weapon']
+        rowcount += 1
+        print  "Row " + str(rowcount) + " done."
+
+    print "Finished geocoding murders..."
+
+fields = ['date', 'year', 'district', 'address', 'race', 'sex', 'age', 'category', 'weapon', 'lat', 'lng', 'confidence']
 
 with open('../data/combined_2001_2013.csv', 'wb') as f:
+    print "Writing output file"
+
     # write header row
     dict_writer = DictUnicodeWriter(f, fields)
     dict_writer.writeheader()
 
     # write permits
     dict_writer.writerows(output)
+
+print "Done."
