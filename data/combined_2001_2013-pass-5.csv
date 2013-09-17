@@ -1,0 +1,4 @@
+"date";"year";"district";"address";"race";"sex";"age";"category";"weapon";"lat";"lng";"confidence"
+"01/01/2001";"2001";"23";"24th and Jefferson Sts., Philadelphia, PA";"B";"M";"27";"shooting";"Firearm";"39.977937";"-75.174702";"geocoder.us"
+"01/01/2001";"2001";"35";"21st St. and Chelten Ave., Philadelphia, PA";"B";"M";"22";"shooting";"Firearm";"40.051848";"-75.155354";"google"
+"01/01/2001";"2001";"12";"5728 Kingsessing Ave., Philadelphia, PA";"B";"M";"34";"shooting";"Firearm";"39.935006";"-75.226761";"0.902"

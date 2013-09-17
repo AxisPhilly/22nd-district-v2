@@ -27,17 +27,17 @@ with open('../data/combined_2001_2013-pass-2.csv', 'rU') as f:
             bad += 1
 
             try:
-                place, (lat, lng) = g.geocode(row[3], exactly_one=False)
+                results = g.geocode(row[3], exactly_one=False)
                 tolerance = 'geocoder.us'
             except TypeError:
-                place, (lat, lng) = '', (row[9], row[10])
+                lat = ''
+                lng = ''
                 tolerance = row[11]
 
             if place:
                 row[9] = str(lat)
                 row[10] = str(lng)
                 row[11] = tolerance
-                row[11] = 'geocoder.us'
 
                 time.sleep(0.5)
                 
