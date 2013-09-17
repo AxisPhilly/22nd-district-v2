@@ -32,12 +32,12 @@ with open('../data/combined_2001_2013-pass-2.csv', 'rU') as f:
             except TypeError:
                 place, (lat, lng) = '', (row[9], row[10])
                 tolerance = row[11]
-                print 'no good'
 
             if place:
                 row[9] = str(lat)
                 row[10] = str(lng)
                 row[11] = tolerance
+                row[11] = 'geocoder.us'
 
                 time.sleep(0.5)
                 
