@@ -3,7 +3,7 @@ import requests
 import cStringIO
 import codecs
 from geopy import geocoders
-g = geocoders.GoogleV3()
+g = geocoders.GeocoderDotUS()
 import time
 
 output = []
@@ -26,16 +26,17 @@ with open('../data/combined_2001_2013-pass-2.csv', 'rU') as f:
             print "Geocoding row " + str(rowcount)
             bad += 1
 
-            lat = ''
-            lng = ''
-            results = g.geocode(row[3], exactly_one=False)
+            try:
+                place, (lat, lng) = g.geocode(row[3], exactly_one=False)
+            except TypeError:
+                print 'no good'
 
-            if results:
-                row[9] = str(results[0][1][0])
-                row[10] = str(results[0][1][1])
-                row[11] = 'google-pass-3'
+            if place:
+                row[9] = str(lat)
+                row[10] = str(lng)
+                row[11] = 'geocoder.us'
 
-                time.sleep(1)
+                time.sleep(0.5)
                 
         output.append(row)
         rowcount += 1
