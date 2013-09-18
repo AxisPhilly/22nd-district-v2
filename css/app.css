@@ -165,7 +165,8 @@ html, body, #map {
   opacity: 0.9;
   padding: 10px;
   border: solid 1px #b0b1b1;
-  border-radius: 3px; }
+  border-radius: 3px;
+  font-size: 13px; }
   @media (max-width: 960px) {
     #browser-description {
       display: none; } }
@@ -180,6 +181,10 @@ html, body, #map {
   .description .byline {
     margin: 6px 0;
     line-height: 1.5em; }
+
+.corner {
+  color: red;
+  font-weight: bold; }
 
 .legend {
   bottom: 25px;
@@ -272,9 +277,14 @@ html, body, #map {
     margin-top: 10px;
     float: right;
     top: 6px;
-    height: 80px;
     margin-right: 10px;
     padding-left: .7em; }
+    @media (max-width: 500px) {
+      #data-controls #year-selector {
+        height: 80px; } }
+    @media (max-height: 450px) {
+      #data-controls #year-selector {
+        height: 80px; } }
   #data-controls .switch {
     top: 10px;
     padding: 0px;

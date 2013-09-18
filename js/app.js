@@ -111,7 +111,7 @@ app.addCartoDBLayer = function(layerName, year) {
   if (app.cartoDBlayer) { app.removeCartoDBLayer(); }
 
   var layerURL = 'http://axisphilly.cartodb.com/api/v1/viz/combined_2003_2013_09172013/viz.json',
-      query = "SELECT * FROM combined_2003_2013_09172013 WHERE category = '" + layerName + "'";
+      query = "SELECT * FROM combined_2003_2013_09172013 WHERE category = '" + layerName + "' AND district = '22'";
 
   if(year !== 'all') {
     query += " AND YEAR = '" + year + "'";

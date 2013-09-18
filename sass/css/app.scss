@@ -223,6 +223,7 @@ html, body, #map {
   padding: 10px;
   border: solid 1px #b0b1b1;
   border-radius: 3px;
+  font-size: 13px;
 
   @media(max-width: 960px) {
     display: none;
@@ -246,6 +247,11 @@ html, body, #map {
     margin: 6px 0;
     line-height: 1.5em;
   }
+}
+
+.corner {
+  color: red;
+  font-weight: bold;
 }
 
 // legend
@@ -373,9 +379,16 @@ html, body, #map {
     margin-top: 10px;
     float: right;
     top: 6px;
-    height: 80px;
     margin-right: 10px;
     padding-left: .7em;
+
+    @media(max-width: 500px) {
+      height: 80px;
+    }
+
+    @media(max-height: 450px) {
+      height: 80px;
+    }
   }
 
   .switch {
