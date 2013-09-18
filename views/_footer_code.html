@@ -132,7 +132,7 @@
       event.preventDefault();
 
       $('#embedModal code').html('<code>&lt;iframe width="100%" height="600" src="' + 
-        document.URL + '/embed.html" frameborder="0"></iframe></code>');
+        'http://apps.axisphilly.org/price-of-revenge/embed.html' + location.hash + '" frameborder="0"></iframe></code>');
       $('#embedModal').foundation('reveal', 'open');
     });
   });
