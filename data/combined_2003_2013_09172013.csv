@@ -428,7 +428,7 @@ date;year;district;address;race;sex;age;category;weapon;lat;lng;confidence
 04/11/2003;2003;4;1920 S.Chris.Colum., Philadelphia, PA;Black;Male;72;shooting;Firearm;39.9263796;-75.1413968;google
 04/11/2003;2003;23;1700 N. 19th St., Philadelphia, PA;Black;Male;50;shooting;Firearm;39.9798730016;-75.1658787578;bing
 04/12/2003;2003;14;Duval and G-Town Ave, Philadelphia, PA;Black;Male;24;shooting;Firearm;40.0482118;-75.1781346;google
-04/12/2003;2003;15;7601 Frankford Ave., Philadelphia, PA;I;Male;31;shooting;Firearm;40.038908;-75.035001;0.902
+04/12/2003;2003;15;7601 Frankford Ave., Philadelphia, PA;Indian;Male;31;shooting;Firearm;40.038908;-75.035001;0.902
 04/12/2003;2003;1;2100 S. 28th St., Philadelphia, PA;White;Male;20;shooting;Firearm;39.9271743;-75.1926726848;bing
 04/12/2003;2003;39;2104 W. Venango St., Philadelphia, PA;Black;Female;72;shooting;Firearm;40.009059;-75.16303;0.902
 04/12/2003;2003;12;6151 Reedland St., Philadelphia, PA;Black;Male;28;shooting;Firearm;39.926475;-75.22536;0.902
@@ -9199,7 +9199,7 @@ date;year;district;address;race;sex;age;category;weapon;lat;lng;confidence
 08/19/2008;2008;12;60th St.  and Chester Ave., Philadelphia, PA;Black;Male;51;shooting;Firearm;39.9336365;-75.231528;google
 08/19/2008;2008;19;Arch and Robinson Sts., Philadelphia, PA;Black;Male;17;shooting;Firearm;39.963939;-75.243699;geocoder.us
 08/19/2008;2008;12;5801 Kingsessing Ave., Philadelphia, PA;Black;Male;19;shooting;Firearm;39.934661;-75.227252;0.902
-08/20/2008;2008;14;5711 Germantown Ave., Philadelphia, PA;I;Male;20;shooting;Firearm;40.035959;-75.174748;0.902
+08/20/2008;2008;14;5711 Germantown Ave., Philadelphia, PA;Indian;Male;20;shooting;Firearm;40.035959;-75.174748;0.902
 08/20/2008;2008;4;614 McClellan St., Philadelphia, PA;Black;Male;20;shooting;Firearm;39.925845;-75.1561;0.902
 08/21/2008;2008;24;3470 Joyce St., Philadelphia, PA;Black;Female;21;shooting;Firearm;39.997166;-75.10423;0.902
 08/21/2008;2008;24;3470 Joyce St., Philadelphia, PA;Black;Male;22;shooting;Firearm;39.997166;-75.10423;0.902
