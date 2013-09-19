@@ -13,7 +13,7 @@ html, body, #map {
   z-index: 100;
   width: 100%;
   height: 50px;
-  background-color: #f6f5f7;
+  background-color: #eee;
   -webkit-box-shadow: 0 1px #b0b1b1;
   box-shadow: 0 1px #b0b1b1; }
   .bar .button {
@@ -236,8 +236,14 @@ html, body, #map {
   line-height: 40px; }
 
 @media (max-width: 640px) {
-  .leaflet-control-zoom {
+  .leaflet-right {
     display: none; } }
+
+.leaflet-left {
+  display: none; }
+  @media (max-width: 640px) {
+    .leaflet-left {
+      display: block; } }
 
 .button {
   border-style: none;
@@ -282,9 +288,12 @@ html, body, #map {
     @media (max-width: 500px) {
       #data-controls #year-selector {
         height: 80px; } }
-    @media (max-height: 450px) {
+    @media (max-height: 400px) {
       #data-controls #year-selector {
         height: 80px; } }
+    @media (max-width: 320px) {
+      #data-controls #year-selector {
+        margin-right: 0; } }
   #data-controls .switch {
     top: 10px;
     padding: 0px;
@@ -294,6 +303,10 @@ html, body, #map {
     font-size: 14px;
     cursor: pointer;
     color: #222; }
+    @media (max-width: 320px) {
+      #data-controls .switch {
+        width: 150px;
+        font-size: 13px; } }
     #data-controls .switch label {
       cursor: pointer; }
   #data-controls .candy {
