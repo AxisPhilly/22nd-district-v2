@@ -223,7 +223,7 @@ html, body, #map {
   padding: 10px;
   border: solid 1px #b0b1b1;
   border-radius: 3px;
-  font-size: 13px;
+  font-size: 12px;
 
   @media(max-width: 960px) {
     display: none;
@@ -236,7 +236,7 @@ html, body, #map {
 
 .description {
   background-color: #fff;
-  font-size: 14px;
+  font-size: 13px;
 
   h2 {
     font-size: 24px;
@@ -300,8 +300,16 @@ html, body, #map {
     }
   }
 
-  @media(max-width: 960px) {
+
+  @media(max-width: 960px) and (min-width: 611px) {
     display: none;
+  }
+  
+  @media(max-width: 610px) and (min-width: 360px) {
+    display: block;
+    bottom: 60px;
+    left: 10px;
+    width: 214px;
   }
 }
 
@@ -325,6 +333,10 @@ html, body, #map {
   @media(max-width: 640px) {
     display: none;
  }
+
+  @media(max-width: 275px) {
+    display: none;
+  }
 }
 
 .leaflet-left {
