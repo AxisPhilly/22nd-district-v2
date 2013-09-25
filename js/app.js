@@ -111,7 +111,7 @@ app.addCartoDBLayer = function(layerName, year) {
   if (app.cartoDBlayer) { app.removeCartoDBLayer(); }
 
   var layerURL = 'http://axisphilly.cartodb.com/api/v1/viz/combined_2003_2013_09172013/viz.json',
-      query = "SELECT * FROM combined_2003_2013_09172013 WHERE category = '" + layerName + "' AND district = '22'";
+      query = "SELECT * FROM combined_2003_2013_09172013 WHERE category = '" + layerName + "'";
 
   if(year !== 'all') {
     query += " AND YEAR = '" + year + "'";
@@ -133,7 +133,7 @@ app.removeCartoDBLayer = function() {
 };
 
 app.getSelectedYear = function() {
-  var year = $('#year-selector li.selected').attr("data");
+  var year = $('#year-selector li.selected').attr("data-year");
 
   return year;
 };
@@ -160,7 +160,7 @@ app.initYearSelector = function() {
     $li.addClass('selected');
 
     var layerName = app.getSelectedLayer();
-    var year = $li.attr('data');
+    var year = $li.attr('data-year');
     app.addCartoDBLayer(layerName, year);
   });
 };

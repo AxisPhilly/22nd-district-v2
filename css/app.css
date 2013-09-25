@@ -360,3 +360,12 @@ div.cartodb-popup div.cartodb-popup-content-wrapper {
 
 div.cartodb-infowindow {
   z-index: 3; }
+
+.district-label {
+  font-size: 13px;
+  color: black;
+  font-weight: bold;
+  text-align: center;
+  background: #fff;
+  opacity: 0.7;
+  border-radius: 6px; }

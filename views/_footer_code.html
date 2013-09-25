@@ -27,8 +27,8 @@
   <script type="text/javascript" src="js/app.js"></script>
 <% } %>
 <script type="text/javascript">
-  var zoom = 15,
-      center = [39.995, -75.182];
+  var zoom = 13,
+      center = [39.969, -75.178];
 
   // Default settings. Zoom and center overridden by URL params, if they exist
   app.opts = {
@@ -37,7 +37,7 @@
     mapOptions: {
       center: center,
       zoom: zoom,
-      minZoom: 13,
+      minZoom: 12,
       maxZoom: 18,
       maxBounds: [
         [39.69, -76.20],
@@ -59,9 +59,27 @@
     app.layerName = 'murder';
     app.addCartoDBLayer('murder', 'all');
 
+    // Setup district label
+    function onEachFeature(feature, layer) {
+      //if (feature.properties && feature.properties.DIST_NUMC) {
+      //  layer.bindPopup('District ' + feature.properties.DIST_NUMC);
+     // }
+
+      var icon = L.divIcon({
+        className: 'district-label',
+        html: 'District ' + feature.properties.DIST_NUMC,
+        iconSize: new L.Point(80, 18)
+      });
+
+      var center = L.polygon(layer._latlngs).getBounds().getCenter();
+
+      L.marker(center, { icon: icon }).addTo(app.map);
+
+    }
+
     // Add police district layer
-    /*$.ajax({
-      url: 'data/police-dist-22.json',
+    $.ajax({
+      url: 'data/districts.json',
       success: function(resp) {
         L.geoJson(resp, {
           style: {
@@ -69,22 +87,8 @@
             weight: 3,
             color: '#FFF',
             opacity: 0.8
-          }
-        }).addTo(app.map);
-      }
-    })*/
-
-    // Add northwest corner of strawberry mansion
-    $.ajax({
-      url: 'data/corner.json',
-      success: function(resp) {
-        L.geoJson(resp, {
-          style: {
-            fill: false,
-            weight: 3,
-            color: 'red',
-            opacity: 0.8
-          }
+          },
+          onEachFeature: onEachFeature
         }).addTo(app.map);
       }
     })
